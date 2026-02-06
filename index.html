@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BUBBLEBEE | Luxury B&B & Bottega</title>
+  <title>BUBBLEBEE | Luxury B&B, Bottega & Wellness</title>
   <meta name="description" content="Bubblebee Luxury B&B: retreat di charme tra colline di grano, Maiella e Costa dei Trabocchi.">
   <style>
     :root {
@@ -43,7 +43,6 @@
     }
     .brand { display: flex; align-items: center; gap: 15px; }
     .brand-logo img { height: 55px; width: auto; object-fit: contain; }
-    .brand-text { display: flex; flex-direction: column; }
     .brand-name { 
         font-weight: 800; letter-spacing: 3px; text-transform: uppercase; font-size: 1.2rem; 
         background: linear-gradient(to right, #fff, var(--accent));
@@ -56,31 +55,29 @@
       padding: 12px 28px; border-radius: 50px;
       font-weight: 700; font-size: 0.85rem; text-transform: uppercase;
       transition: all 0.3s ease; border: none; cursor: pointer;
-      box-shadow: 0 4px 15px rgba(212, 169, 79, 0.2);
     }
-    .btn-book:hover { background: var(--accent-bright); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 169, 79, 0.4); }
+    .btn-book:hover { background: var(--accent-bright); transform: translateY(-2px); }
 
     .menu-trigger {
       background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
       cursor: pointer; border-radius: 12px;
-      display: flex; flex-direction: column; gap: 6px; padding: 12px; transition: 0.3s;
+      display: flex; flex-direction: column; gap: 6px; padding: 12px;
     }
     .menu-trigger span { display: block; width: 24px; height: 2px; background: var(--text); transition: 0.3s; }
-    .menu-trigger:hover { background: rgba(255,255,255,0.1); }
 
     /* OVERLAY MENU */
     .nav-overlay {
       position: fixed; inset: 0; background: var(--bg);
       z-index: 99; display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0; pointer-events: none; transition: 0.5s ease;
     }
     .nav-overlay.open { opacity: 1; pointer-events: auto; }
     .nav-links { list-style: none; text-align: center; }
     .nav-links a {
-      display: block; font-size: clamp(1.5rem, 8vw, 3rem); font-weight: 800; padding: 10px;
+      display: block; font-size: 1.8rem; font-weight: 700; padding: 12px;
       color: var(--text); transition: 0.3s; text-transform: uppercase; text-decoration: none;
     }
-    .nav-links a:hover { color: var(--accent); transform: skewX(-5deg); }
+    .nav-links a:hover { color: var(--accent); }
 
     /* HERO */
     .hero {
@@ -88,79 +85,62 @@
       display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center;
     }
     .hero-title {
-      font-size: clamp(2.8rem, 6vw, 4.5rem); line-height: 1; font-weight: 900;
-      text-transform: uppercase; margin-bottom: 25px; letter-spacing: -2px;
+      font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1; font-weight: 900;
+      text-transform: uppercase; margin-bottom: 25px;
     }
-    .hero-title .glow { color: var(--accent); text-shadow: 0 0 30px rgba(212, 169, 79, 0.2); }
-    .hero-desc { color: var(--muted); font-size: 1.15rem; max-width: 500px; margin-bottom: 35px; }
+    .glow { color: var(--accent); text-shadow: 0 0 20px rgba(212, 169, 79, 0.3); }
 
     /* CAROUSEL */
-    .hero-visual { position: relative; }
     .carousel-container {
       position: relative; border-radius: 40px; overflow: hidden;
-      aspect-ratio: 4/5; box-shadow: var(--shadow-lg); border: 1px solid rgba(255,255,255,0.05);
+      aspect-ratio: 4/5; box-shadow: var(--shadow-lg);
     }
     .slide {
       position: absolute; inset: 0; background-size: cover; background-position: center;
-      opacity: 0; transition: opacity 1s ease, transform 1.5s ease; transform: scale(1.15);
+      opacity: 0; transition: opacity 1s ease, transform 1.5s ease; transform: scale(1.1);
     }
     .slide.active { opacity: 1; transform: scale(1); }
-    
     .carousel-nav {
       position: absolute; bottom: 30px; left: 30px; right: 30px;
       display: flex; align-items: center; justify-content: space-between; z-index: 10;
     }
-    .carousel-dots { display: flex; gap: 10px; }
-    .dot { width: 35px; height: 3px; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
-    .dot.active { background: var(--accent); width: 60px; }
+    .dot { width: 30px; height: 3px; background: rgba(255,255,255,0.2); cursor: pointer; transition: 0.3s; }
+    .dot.active { background: var(--accent); width: 50px; }
     .c-btn {
-      width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(10, 10, 10, 0.4); color: white; cursor: pointer; backdrop-filter: blur(10px);
-      display: flex; align-items: center; justify-content: center; transition: 0.3s; font-size: 1.2rem;
+      width: 45px; height: 45px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.3); color: white; cursor: pointer; backdrop-filter: blur(5px);
     }
-    .c-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
 
-    /* SECTIONS GENERIC */
-    section { padding: 100px 0; }
-    .section-header { margin-bottom: 50px; }
-    .label { color: var(--accent); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 10px; }
-    .title { font-size: clamp(1.8rem, 4vw, 2.8rem); text-transform: uppercase; font-weight: 800; }
-
-    /* GRID & CARDS */
+    /* SECTIONS */
+    section { padding: 80px 0; }
+    .label { color: var(--accent); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 10px; }
+    .title { font-size: 2.2rem; text-transform: uppercase; font-weight: 800; margin-bottom: 40px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
     .card {
-      background: var(--surface); border-radius: 30px; padding: 25px;
-      border: 1px solid rgba(255,255,255,0.03); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      background: var(--surface); border-radius: 24px; padding: 20px;
+      border: 1px solid rgba(255,255,255,0.03); transition: 0.4s;
     }
-    .card:hover { transform: translateY(-12px); border-color: rgba(212, 169, 79, 0.3); }
-    .card img { width: 100%; height: 280px; object-fit: cover; border-radius: 20px; margin-bottom: 25px; }
+    .card:hover { transform: translateY(-10px); border-color: rgba(212, 169, 79, 0.2); }
+    .card img { width: 100%; height: 260px; object-fit: cover; border-radius: 18px; margin-bottom: 20px; }
+    
+    /* CHIPS */
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 15px; }
+    .chip { background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; color: var(--muted); border: 1px solid rgba(255,255,255,0.1); }
 
     /* BOTTEGA SPECIFIC */
-    .bottega-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-    .product-card {
-      background: linear-gradient(145deg, #181818, #0f0f0f);
-      border-radius: 30px; padding: 20px; text-align: center;
-      border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
-    }
-    .product-card:hover { border-color: var(--accent); }
-    .product-img-wrapper { border-radius: 20px; overflow: hidden; margin-bottom: 20px; aspect-ratio: 1/1; }
-    .product-card img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
-    .product-card:hover img { transform: scale(1.1); }
-    .price-tag { color: var(--accent); font-weight: 800; font-size: 1.4rem; display: block; margin: 15px 0; }
+    .product-card { text-align: center; }
+    .price-tag { color: var(--accent); font-weight: 800; font-size: 1.3rem; display: block; margin: 10px 0; }
     .btn-outline {
-      background: transparent; border: 1px solid rgba(212, 169, 79, 0.4); color: var(--accent);
-      padding: 10px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s;
+      background: transparent; border: 1px solid var(--accent); color: var(--accent);
+      padding: 8px 20px; border-radius: 30px; cursor: pointer; transition: 0.3s;
     }
     .btn-outline:hover { background: var(--accent); color: #000; }
 
-    /* FOOTER */
-    footer { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    footer { padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--muted); font-size: 0.9rem; }
 
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 120px; }
-      .hero-desc { margin: 0 auto 35px; }
+      .hero { grid-template-columns: 1fr; text-align: center; }
       .brand-text { display: none; }
-      .carousel-container { aspect-ratio: 1/1; }
     }
   </style>
 </head>
@@ -169,15 +149,14 @@
   <header id="mainHeader">
     <div class="shell header-inner">
       <div class="brand">
-        <div class="brand-logo"><img src="logo.jpeg" alt="Bubblebee Logo"></div>
+        <div class="brand-logo"><img src="logo.jpeg" alt="Logo"></div>
         <div class="brand-text">
           <span class="brand-name">Bubblebee</span>
-          <span style="font-size: 0.65rem; color: var(--muted); letter-spacing: 2px;">LUXURY RETREAT</span>
         </div>
       </div>
       <div class="nav-actions">
         <button class="btn-book" onclick="scrollToId('contatti')">Prenota</button>
-        <button class="menu-trigger" id="menuBtn" onclick="toggleMenu()">
+        <button class="menu-trigger" onclick="toggleMenu()">
           <span></span><span></span>
         </button>
       </div>
@@ -186,11 +165,12 @@
 
   <nav class="nav-overlay" id="menuOverlay">
     <ul class="nav-links">
-      <li><a href="#suite" onclick="toggleMenu()">Le Suite</a></li>
+      <li><a href="#suite" onclick="toggleMenu()">Suite</a></li>
       <li><a href="#bubble" onclick="toggleMenu()">Bubble Rooms</a></li>
-      <li><a href="#esperienze" onclick="toggleMenu()">Esperienze</a></li>
-      <li><a href="#bottega" onclick="toggleMenu()">La Bottega</a></li>
-      <li><a href="#territorio" onclick="toggleMenu()">Territorio</a></li>
+      <li><a href="#esperienze" onclick="toggleMenu()">Esperienze & Wellness</a></li>
+      <li><a href="#bottega" onclick="toggleMenu()">Bottega</a></li>
+      <li><a href="#territorio" onclick="toggleMenu()">Il Territorio</a></li>
+      <li><a href="#sala-eventi" onclick="toggleMenu()">Sala Eventi</a></li>
       <li><a href="#contatti" onclick="toggleMenu()">Contatti</a></li>
     </ul>
   </nav>
@@ -199,30 +179,21 @@
     
     <section class="hero">
       <div class="hero-content">
-        <span class="label" style="margin-bottom: 20px;">Abruzzo, Italia</span>
-        <h1 class="hero-title">Tenuta<br><span class="glow">Bubblebee</span></h1>
-        <p class="hero-desc">Un rifugio di design immerso nel silenzio, dove l'architettura incontra la natura incontaminata.</p>
-        <div style="display: flex; gap: 15px; justify-content: inherit;">
-           <button class="btn-book" onclick="scrollToId('suite')">Scopri di più</button>
-           <button class="btn-outline" style="border-color: white; color: white;" onclick="scrollToId('bottega')">Vedi Bottega</button>
-        </div>
+        <span class="label">Tenuta Bubblebee</span>
+        <h1 class="hero-title">Esperienza unica<br><span class="glow">nella natura</span></h1>
+        <p style="color:var(--muted); margin-bottom:30px;">Nature retreat tra le colline d'Abruzzo, dove il lusso incontra il silenzio dei campi di grano.</p>
+        <button class="btn-book" onclick="scrollToId('suite')">Esplora le Suite</button>
       </div>
-
       <div class="hero-visual">
         <div class="carousel-container">
           <div class="slide active" style="background-image:url('tenuta bubblebee.jpeg');"></div>
           <div class="slide" style="background-image:url('c3b4b01f-34b2-40ef-8143-965a8de17e75.jpeg');"></div>
           <div class="slide" style="background-image:url('bubbleroom2.jpg');"></div>
-          
           <div class="carousel-nav">
             <div class="carousel-dots">
               <div class="dot active" onclick="jumpTo(0)"></div>
               <div class="dot" onclick="jumpTo(1)"></div>
               <div class="dot" onclick="jumpTo(2)"></div>
-            </div>
-            <div class="carousel-btns">
-              <button class="c-btn" onclick="prevSlide()">←</button>
-              <button class="c-btn" onclick="nextSlide()">→</button>
             </div>
           </div>
         </div>
@@ -230,112 +201,132 @@
     </section>
 
     <section id="suite">
-      <div class="section-header">
-        <span class="label">Ospitalità</span>
-        <h2 class="title">Suite <span class="glow" style="-webkit-text-fill-color:initial; color:var(--accent)">Esclusive</span></h2>
-      </div>
+      <span class="label">Le nostre camere</span>
+      <h2 class="title">Suite di <span class="glow">Carattere</span></h2>
       <div class="grid">
         <div class="card">
           <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Suite">
           <h3>Suite Aurea</h3>
-          <p>Vista panoramica sui campi di grano e design minimalista.</p>
+          <p>Ampia suite matrimoniale con grandi vetrate sui campi di grano.</p>
+          <div class="chips"><span class="chip">Vista Colline</span><span class="chip">Letto King</span></div>
         </div>
         <div class="card">
           <img src="https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Suite">
           <h3>Suite Terra</h3>
-          <p>L'abbraccio dei materiali naturali per un relax profondo.</p>
+          <p>Tessuti naturali e atmosfera raccolta per un relax totale.</p>
+          <div class="chips"><span class="chip">Vista Maiella</span><span class="chip">Design Bio</span></div>
         </div>
       </div>
     </section>
 
     <section id="bubble">
-        <div class="section-header">
-          <span class="label">Sotto le stelle</span>
-          <h2 class="title">Bubble Rooms</h2>
+      <span class="label">Dormire sotto le stelle</span>
+      <h2 class="title">Bubble <span class="glow">Rooms</span></h2>
+      <div class="grid">
+        <div class="card">
+          <img src="bubbleroom1.jpg" alt="Bubble Vega">
+          <h3>Bubble Vega</h3>
+          <p>Bolla panoramica per notti stellate indimenticabili.</p>
         </div>
-        <div class="grid">
-          <div class="card">
-            <img src="bubbleroom1.jpg" alt="Bubble Vega">
-            <h3>Vega Room</h3>
-            <p>Dormire guardando il cielo, protetti dalla natura.</p>
-          </div>
-          <div class="card">
-            <img src="bubbleroom2.jpg" alt="Bubble Sirius">
-            <h3>Sirius Room</h3>
-            <p>Privacy e magia in una bolla di puro cristallo.</p>
-          </div>
+        <div class="card">
+          <img src="bubbleroom2.jpg" alt="Bubble Sirius">
+          <h3>Bubble Sirius</h3>
+          <p>Posizione riservata con vista che spazia fino al mare.</p>
         </div>
+      </div>
+    </section>
+
+    <section id="esperienze">
+      <span class="label">Vivere la Tenuta</span>
+      <h2 class="title">Wellness & <span class="glow">Campagna</span></h2>
+      <div class="grid">
+        <div class="card">
+          <img src="raccolta olive.jpeg" alt="Raccolta Olive">
+          <h3>Raccolta delle Olive</h3>
+          <p>Vivi l'esperienza della raccolta e degusta l'olio appena franto.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Yoga">
+          <h3>Yoga & Wellness</h3>
+          <p>Sessioni di yoga al tramonto e percorsi benessere nel verde.</p>
+        </div>
+      </div>
     </section>
 
     <section id="bottega">
-      <div class="section-header">
-        <span class="label">I Sapori della Tenuta</span>
-        <h2 class="title">La Bottega</h2>
-      </div>
-      <div class="bottega-grid">
-        <div class="product-card">
-          <div class="product-img-wrapper">
-            <img src="https://images.pexels.com/photos/1024384/pexels-photo-1024384.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Olio">
-          </div>
-          <h3>Olio EVO Biologico</h3>
+      <span class="label">Boutique</span>
+      <h2 class="title">La <span class="glow">Bottega</span></h2>
+      <div class="grid">
+        <div class="card product-card">
+          <img src="https://images.pexels.com/photos/1024384/pexels-photo-1024384.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Olio">
+          <h3>Olio EVO Tenuta</h3>
           <span class="price-tag">€ 18,00</span>
-          <button class="btn-outline">Ordina Ora</button>
+          <button class="btn-outline">Dettagli</button>
         </div>
-        <div class="product-card">
-          <div class="product-img-wrapper">
-            <img src="https://images.pexels.com/photos/1639400/pexels-photo-1639400.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Miele">
-          </div>
+        <div class="card product-card">
+          <img src="https://images.pexels.com/photos/1639400/pexels-photo-1639400.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Miele">
           <h3>Miele Millefiori</h3>
           <span class="price-tag">€ 12,00</span>
-          <button class="btn-outline">Ordina Ora</button>
+          <button class="btn-outline">Dettagli</button>
         </div>
-        <div class="product-card">
-          <div class="product-img-wrapper">
-            <img src="https://images.pexels.com/photos/3371483/pexels-photo-3371483.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Vino">
-          </div>
-          <h3>Vino della Casa</h3>
-          <span class="price-tag">€ 22,00</span>
-          <button class="btn-outline">Ordina Ora</button>
+      </div>
+    </section>
+
+    <section id="territorio">
+      <span class="label">Il Territorio</span>
+      <h2 class="title">A 30 minuti <span class="glow">da noi</span></h2>
+      <div class="grid">
+        <div class="card">
+          <img src="IMG_3028.jpeg" alt="Costa dei Trabocchi">
+          <h3>Costa dei Trabocchi</h3>
+          <p>Il mare d'Abruzzo, le piste ciclabili e le cene sulle palafitte.</p>
         </div>
+        <div class="card">
+          <img src="IMG_3030.jpeg" alt="Gole di San Martino">
+          <h3>Gole di San Martino</h3>
+          <p>Sentieri mozzafiato e natura selvaggia ai piedi della Maiella.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sala-eventi">
+      <span class="label">Spazi comuni</span>
+      <h2 class="title">Sala <span class="glow">Eventi</span></h2>
+      <div class="card" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Sala Eventi" style="max-height: 400px;">
+        <h3>Il Fienile della Tenuta</h3>
+        <p style="max-width: 600px;">Uno spazio polifunzionale restaurato per workshop, degustazioni o eventi privati immersi nella quiete.</p>
       </div>
     </section>
 
     <section id="contatti">
-      <div class="card" style="text-align: center; padding: 80px 20px; background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);">
-        <span class="label">Contatti</span>
-        <h2 class="title" style="margin-bottom: 20px;">Riserva il tuo posto</h2>
-        <p style="font-size: 1.3rem; margin-bottom: 30px; font-weight: 300;">info@bubblebee.it<br>Sant’Eusanio del Sangro (CH)</p>
-        <button class="btn-book" onclick="window.location.href='mailto:info@bubblebee.it'">Invia Email</button>
+      <span class="label">Contatti</span>
+      <h2 class="title">Vieni a <span class="glow">Trovarci</span></h2>
+      <div class="card" style="text-align: center;">
+        <p style="font-size: 1.2rem; margin-bottom: 10px;">Email: info@bubblebee.it</p>
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">WhatsApp: +39 000 000 0000</p>
+        <p style="color: var(--muted);">Indirizzo: Sant’Eusanio del Sangro (CH) - Abruzzo</p>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <div class="shell">
-      <p style="color: #444; font-size: 0.8rem; letter-spacing: 1px;">&copy; <span id="year"></span> BUBBLEBEE LUXURY B&B. PROGETTATO PER L'ECCELLENZA.</p>
-    </div>
+    <p>&copy; <span id="year"></span> Bubblebee Luxury B&B. All rights reserved.</p>
   </footer>
 
   <script>
-    // Menu
-    function toggleMenu() {
-      document.getElementById('menuOverlay').classList.toggle('open');
-      const spans = document.querySelectorAll('.menu-trigger span');
-      spans[0].style.transform = document.getElementById('menuOverlay').classList.contains('open') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
-      spans[1].style.transform = document.getElementById('menuOverlay').classList.contains('open') ? 'rotate(-45deg) translate(5px, -6px)' : 'none';
-    }
-
-    function scrollToId(id) {
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({ behavior: 'smooth' });
+    function toggleMenu() { document.getElementById('menuOverlay').classList.toggle('open'); }
+    function scrollToId(id) { 
+        if(document.getElementById('menuOverlay').classList.contains('open')) toggleMenu();
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     // Carousel
     let current = 0;
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
-
     function updateCarousel(index) {
       slides.forEach(s => s.classList.remove('active'));
       dots.forEach(d => d.classList.remove('active'));
@@ -343,18 +334,12 @@
       slides[current].classList.add('active');
       dots[current].classList.add('active');
     }
-    function nextSlide() { updateCarousel(current + 1); }
-    function prevSlide() { updateCarousel(current - 1); }
     function jumpTo(index) { updateCarousel(index); }
-    setInterval(nextSlide, 6000);
+    setInterval(() => updateCarousel(current + 1), 5000);
 
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Scroll Header
     window.addEventListener('scroll', () => {
       const header = document.getElementById('mainHeader');
-      header.style.height = window.scrollY > 50 ? '70px' : '90px';
       header.style.background = window.scrollY > 50 ? 'rgba(10, 10, 10, 0.95)' : 'rgba(10, 10, 10, 0.75)';
     });
   </script>
